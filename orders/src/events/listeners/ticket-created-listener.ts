@@ -1,7 +1,7 @@
 import { Message } from "node-nats-streaming";
-import { Listener, TicketCreatedEvent, Subjects } from "@tmangtickets/common";
-import { queueGroupName } from "./queue-group-name";
+import { Subjects, Listener, TicketCreatedEvent } from "@tmangtickets/common";
 import { Ticket } from "../../models/ticket";
+import { queueGroupName } from "./queue-group-name";
 
 export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   subject: Subjects.TicketCreated = Subjects.TicketCreated;
