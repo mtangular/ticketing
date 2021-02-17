@@ -7,6 +7,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorisedError,
+  BadRequestError,
 } from "@tmangtickets/common";
 import { Ticket } from "../models/ticket";
 
@@ -28,6 +29,9 @@ router.put(
       throw new NotFoundError();
     }
 
+    if (ticket.orderId) {
+      throw new BadRequestError("Cannot edit a reserved ticket");
+    }
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorisedError();
     }

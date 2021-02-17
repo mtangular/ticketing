@@ -1,57 +1,50 @@
-import { AlphaLocale } from 'express-validator/src/options'
-import {MongoMemoryServer} from 'mongodb-memory-server'
-import mongoose from 'mongoose'
-import {app} from '../app'
-import request from 'supertest'
-import { response } from 'express'
+import { AlphaLocale } from "express-validator/src/options";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
+import { app } from "../app";
+import request from "supertest";
+import { response } from "express";
 
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): Promise<string>
+      signin(): Promise<string>;
     }
   }
 }
 
-let mongo:any
+let mongo: any;
 
-beforeAll(async()=>{
-  process.env.JWT_KEY='asdsd'
-  mongo = new MongoMemoryServer()
-  const mongoUri = await mongo.getUri()
+beforeAll(async () => {
+  process.env.JWT_KEY = "asdsd";
+  mongo = new MongoMemoryServer();
+  const mongoUri = await mongo.getUri();
 
-  await mongoose.connect(mongoUri,{
-    useNewUrlParser:true,
-    useUnifiedTopology: true
-  })
+  await mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+});
 
-})
+beforeEach(async () => {
+  const collections = await mongoose.connection.db.collections();
 
-beforeEach(async ()=>{
-
-  const collections=await mongoose.connection.db.collections()
-
-  for (let collection of collections){
-    await collection.deleteMany({})
+  for (let collection of collections) {
+    await collection.deleteMany({});
   }
-})
+});
 
-afterAll(async ()=>{
-  await mongo.stop()
-  await mongoose.connection.close()
-})
+afterAll(async () => {
+  await mongo.stop();
+  await mongoose.connection.close();
+});
 
-global.signin=async()=>{
-  const email='post@post.com'
-  const password = 'password'
-   await request(app)
-  .post('/api/users/signup')
-  .send(
-    {email,password
-  }).expect(400)
+global.signin = async () => {
+  const email = "post@post.com";
+  const password = "password";
+  await request(app).post("/api/users/signup").send({ email, password }).expect(400);
 
-  const cookie=response.get('Set-Cookie')
+  const cookie = response.get("Set-Cookie");
 
-  return cookie
-
-}
+  return cookie;
+};
