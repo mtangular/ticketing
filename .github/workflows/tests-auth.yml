@@ -1,7 +1,4 @@
-<<<<<<< HEAD:.github/workflows/tests-auth.yml
   
-=======
->>>>>>> master:.github/workflows/tests.yml
 name: tests-auth
 
 on:
