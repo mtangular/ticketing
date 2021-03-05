@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@tmangtickets/common": "^1.0.1",
+    "@tmangtickets/common": "^1.0.14",
     "@types/cookie-session": "^2.0.42",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mongoose": "^5.10.3",
