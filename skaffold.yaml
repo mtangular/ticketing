@@ -54,6 +54,7 @@ build:
       context: payments
       docker:
         dockerfile: Dockerfile
+        noCache: false
       sync:
         manual:
           - src: 'src/**/*.ts'
