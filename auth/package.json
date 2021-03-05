@@ -25,7 +25,7 @@
     "mongodb-memory-server": "^6.5.1",
     "supertest": "^4.0.2",
     "ts-jest": "^25.3.1"
-  }
+  },
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
     "test": "jest --watchAll --no-cache",
