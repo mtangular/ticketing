@@ -8,7 +8,7 @@ import { response } from "express";
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): Promise<string>;
+      signin(): Promise<string[]>;
     }
   }
 }
@@ -27,6 +27,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
+  jest.setTimeout(30000);
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
@@ -40,9 +41,12 @@ afterAll(async () => {
 });
 
 global.signin = async () => {
-  const email = "post@post.com";
+  const email = "test@test.com";
   const password = "password";
-  await request(app).post("/api/users/signup").send({ email, password }).expect(400);
+  const response = await request(app)
+    .post("/api/users/signup")
+    .send({ email, password })
+    .expect(201);
 
   const cookie = response.get("Set-Cookie");
 
