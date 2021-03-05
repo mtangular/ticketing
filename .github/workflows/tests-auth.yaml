@@ -1,8 +1,13 @@
+<<<<<<< HEAD:.github/workflows/tests-auth.yml
   
+=======
+>>>>>>> master:.github/workflows/tests.yml
 name: tests-auth
 
 on:
-  pull_request
+  pull_request:
+    paths: 
+      - 'auth/**'
   
 jobs:
   build:

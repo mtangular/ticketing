@@ -1,7 +1,13 @@
 name: tests-orders
 
 on:
+<<<<<<< HEAD
   pull_request
+=======
+  pull_request:
+    paths: 
+      - 'orders/**'
+>>>>>>> master
   
 jobs:
   build:

@@ -1,7 +1,13 @@
 name: tests-tickets
 
 on:
+<<<<<<< HEAD
   pull_request
+=======
+  pull_request:
+    paths: 
+      - 'tickets/**'
+>>>>>>> master
   
 jobs:
   build:

@@ -1,7 +1,13 @@
 name: tests-payments
 
 on:
+<<<<<<< HEAD
   pull_request
+=======
+  pull_request:
+    paths: 
+      - 'payments/**'
+>>>>>>> master
   
 jobs:
   build:
